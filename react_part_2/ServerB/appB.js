@@ -6,5 +6,5 @@ app.use(cors());
 app.listen(5000);
 
 app.get("/getData",function(req,res){
-    res.send('{"id":3 , "qty":200 }')
+    res.send('{"id":3 , "qty":300 }')
 })
