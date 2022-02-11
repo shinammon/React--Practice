@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: "Microsoft JhengHei", "Microsoft YaHei", STHeiti,
+          sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      // 程式寫在這:
+
+      function App() {
+
+        //var data = 100;
+        var [data, setData] = React.useState(100);  //useState會回傳一個陣列[100 , fun] 第一個為值 第二個為function
+        var anArray = React.useState(1000);
+        var data2 = anArray[0];
+        var setData2 = anArray[1];
+        // var doClick = () => {
+        //     setData(data + 1)
+        // }
+
+          return(
+            <React.Fragment>
+              <h3>It's work! data = {data}</h3>
+              <button class="btn btn-outline-success" onClick = { () =>{setData(data + 1);} }>+</button> &nbsp; 
+              <button class="btn btn-outline-danger"onClick = { () =>{setData(data - 1);} }>-</button>
+              <hr/>
+              <h3>It's work! data = {data2}</h3>
+              <button class="btn btn-outline-success" onClick = { () =>{setData2(data2 + 1);} }>+</button> &nbsp; 
+              <button class="btn btn-outline-danger"onClick = { () =>{setData2(data2 - 1);} }>-</button>  
+            </React.Fragment>
+          )
+      }
+
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

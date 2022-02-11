@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', "Microsoft YaHei", STHeiti, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class Clock extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    date : new Date()
+                }
+                // var _this = this;   //this已為window物件 因此需要重新指定_this
+                // setInterval(function() {
+                //     _this.state.date = new Date();
+                //     console.log(_this.state.date);
+                //     _this.setState({});
+                // },1000);
+            }
+
+            componentDidMount(){
+                this.timerId = setInterval(() => {     //this會換人做，要使用箭頭函式
+                    this.setState({date: new Date()})  //資料有改變要呼叫setState 
+                },1000);
+            }
+
+            componentWillUnmount(){
+                clearInterval(this,timerId);
+            }
+
+            render(){
+                return (
+                    <div>
+                        <h1>Hello, world!</h1>
+                        <h2>It is <DisplayTime date = {this.state.date} />.</h2>
+                    </div>
+                )
+            }
+        }
+
+        // function Clock(props) {
+        //     return (
+        //         <div>
+        //             <h1>Hello, world!</h1>
+        //             <h2>It is {props.date.toLocaleTimeString()}.</h2>
+        //         </div>
+        //     );
+        // }
+
+        // function tick() {
+        //     ReactDOM.render(
+        //         <Clock date={new Date()} />,
+        //         document.getElementById('root')
+        //     );
+        // }
+
+        function DisplayTime(props){
+            return(
+                <span>
+                    {props.date.toLocaleTimeString()}    
+                </span>
+            )
+        }
+        ReactDOM.render(              //React 呼叫render方法，把資料顯示在瀏覽器上
+                <Clock  />,
+                document.getElementById('root')
+            );
+
+        
+
+    </script>
+
+</body>
+
+</html>
